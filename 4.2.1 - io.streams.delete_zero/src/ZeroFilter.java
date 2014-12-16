@@ -28,12 +28,14 @@ public class ZeroFilter {
                             //NOP
                         } else {
                             fromIndex=index;
+                            state = NUMBERS_STATE;
                         }
                         break;
                     case NUMBERS_STATE:
                         if (elem == 0) {
                             // Write to dst stream
                             dst.write(buff,fromIndex,index-fromIndex);
+                            state = ZEROS_STATE;
                         } else {
                             //NOP
                         }
