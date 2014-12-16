@@ -12,7 +12,19 @@ import java.io.OutputStream;
 
 public class ZeroFilter {
 
-    public static void filter(InputStream src, OutputStream dst, int buffSize) throws IOException {
+    public static void filterElem(InputStream in, OutputStream out) throws IOException {
+        while (true) {
+            int value = in.read();
+            if (value > 0) {
+                out.write(value);
+            } else if (value == -1) {
+                break;
+            }
+        }
+    }
+
+    public static void filterBuff(InputStream src, OutputStream dst, int buffSize) throws IOException {
+        System.err.println("buffSize="+buffSize);
         final int ZEROS_STATE = 0;
         final int NUMBERS_STATE = 1;
         byte[] buff = new byte[buffSize];
@@ -47,7 +59,8 @@ public class ZeroFilter {
             }
             if (state == NUMBERS_STATE) {
                 // Write to dst stream
-                dst.write(buff,fromIndex,buff.length);
+                System.err.println("fromIndex="+fromIndex+"    buff.length="+buff.length);
+                dst.write(buff, fromIndex, buff.length - 1);
             }
         }
     }

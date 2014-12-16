@@ -17,7 +17,7 @@ public class DeleteZeroLabRandomTest {
 
     public static void main(String[] args) throws IOException {
         Random rnd = new Random(0);
-        for (int ZeroFilter = 0; ZeroFilter < TEST_COUNT; ZeroFilter++) {
+        for (int i = 0; i < TEST_COUNT; i++) {
             byte[] testData = new byte[MIN_INPUT_LEN + rnd.nextInt(MAX_INPUT_LEN + 1 -
                     MIN_INPUT_LEN)];
             int buffLen = MIN_BUFF_SIZE + rnd.nextInt(MAX_BUFF_SIZE + 1 - MIN_BUFF_SIZE);
@@ -30,7 +30,7 @@ public class DeleteZeroLabRandomTest {
             // --- 
             ZeroFilter.filterBuff(stream(testData), buffActual, buffLen);
             ZeroFilter.filterElem(stream(testData), buffExpected);
-            // --- 
+            // ---
             byte[] actualResult = buffActual.toByteArray();
             byte[] expectedResult = buffExpected.toByteArray();
 
