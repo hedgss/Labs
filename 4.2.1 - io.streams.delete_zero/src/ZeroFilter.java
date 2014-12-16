@@ -25,25 +25,27 @@ public class ZeroFilter {
                 switch (state) {
                     case ZEROS_STATE:
                         if (elem == 0) {
-                            ...
+                            //NOP
                         } else {
-                            ...
+                            fromIndex=index;
                         }
                         break;
                     case NUMBERS_STATE:
                         if (elem == 0) {
-                            ...
+                            // Write to dst stream
+                            dst.write(buff,fromIndex,index-fromIndex);
                         } else {
-                            ...
+                            //NOP
                         }
                         break;
                 }
             }
             if (state == ZEROS_STATE) {
-                ...
+                //NOP
             }
             if (state == NUMBERS_STATE) {
-                ...
+                // Write to dst stream
+                dst.write(buff,fromIndex,buff.length);
             }
         }
     }
