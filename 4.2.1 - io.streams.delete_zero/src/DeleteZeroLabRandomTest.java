@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -40,6 +42,7 @@ public class DeleteZeroLabRandomTest {
                         + " for input testData:" + Arrays.toString(testData) + " and buffLen:" + buffLen);
             }
         }
+        System.out.println("Test is passed");
     }
 
     public static InputStream stream(byte[] array) {

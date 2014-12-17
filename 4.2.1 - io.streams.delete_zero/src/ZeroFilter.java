@@ -24,12 +24,13 @@ public class ZeroFilter {
     }
 
     public static void filterBuff(InputStream src, OutputStream dst, int buffSize) throws IOException {
-        System.err.println("buffSize="+buffSize);
+        // System.err.println("buffSize="+buffSize);
         final int ZEROS_STATE = 0;
         final int NUMBERS_STATE = 1;
         byte[] buff = new byte[buffSize];
         int count;
         while ((count = src.read(buff)) != -1) {
+            // System.err.println("count="+count);
             int state = ZEROS_STATE;
             int fromIndex = -1;
             for (int index = 0; index < count; index++) {
@@ -59,8 +60,8 @@ public class ZeroFilter {
             }
             if (state == NUMBERS_STATE) {
                 // Write to dst stream
-                System.err.println("fromIndex="+fromIndex+"    buff.length="+buff.length);
-                dst.write(buff, fromIndex, buff.length - 1);
+                // System.err.println("fromIndex="+fromIndex+"    buff.length="+buff.length);
+                dst.write(buff, fromIndex, count - fromIndex );
             }
         }
     }
